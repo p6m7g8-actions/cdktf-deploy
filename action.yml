@@ -23,53 +23,8 @@ runs:
   steps:
     - name: Checkout code
       uses: actions/checkout@v4.2.2
-    - name: Install Node.js
-      shell: bash
-      run: |
-        set +e
-        curl -fsSL https://nodejs.org/dist/v22.11.0/node-v22.11.0-linux-x64.tar.xz -o node-v22.11.0-linux-x64.tar.xz
-        sudo tar -xJf node-v22.11.0-linux-x64.tar.xz -C /usr/local
-        ls -alFh /usr/local
-        sudo chmod -R 777 /usr/local/node-v22.11.0-linux-x64
-        echo "/usr/local/node-v22.11.0-linux-x64/bin" >> $GITHUB_PATH
-    - name: Corepack
-      shell: bash
-      run: |
-        set +e
-        echo $PATH
-        which corepack
-        sudo /usr/local/node-v22.11.0-linux-x64/bin/corepack enable
-        sudo /usr/local/node-v22.11.0-linux-x64/bin/corepack prepare pnpm@latest --activate
-    - name: Restore NPM node_modules
-      uses: actions/cache/restore@v4.1.2
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-pnpm-node_modules-${{ hashFiles('pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-node_modules-
-    - name: Check Node
-      shell: bash
-      run: |
-        set +e
-        which node
-        which npm
-        which pnpm
-        which corepack
-        node -v
-        npm -v
-        pnpm --version
-        corepack --version
-        echo $PATH
-    - name: Install pnpm and dependencies
-      shell: bash
-      run: pnpm install
-    - name: Cache NPM dependencies
-      uses: actions/cache@v4.1.2
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-pnpm-node_modules-${{ hashFiles('pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-node_modules-
+    - name: Node
+      uses: p6m7g8-actions/node-setup@main
     - name: CDKTF bootstrap
       shell: bash
       run: |
