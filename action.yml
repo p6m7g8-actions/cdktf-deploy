@@ -32,13 +32,13 @@ runs:
         which cdktf
         cdktf --version
     - name: Assume role using OIDC
-      uses: aws-actions/configure-aws-credentials@v4.0.2
+      uses: aws-actions/configure-aws-credentials@v4.1.0
       with:
         aws-region: ${{ inputs.aws_region }}
         role-to-assume: ${{ inputs.aws_role }}
         role-session-name: ${{ inputs.aws_session_name }}
     - name: OpenTofu
-      uses: opentofu/setup-opentofu@v1.0.4
+      uses: opentofu/setup-opentofu@v1.0.5
       with:
         tofu_version: 1.8.6
     - name: Run build
