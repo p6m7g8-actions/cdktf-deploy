@@ -40,7 +40,7 @@ runs:
     - name: OpenTofu
       uses: opentofu/setup-opentofu@v1.0.6
       with:
-        tofu_version: 1.8.6
+        tofu_version: 1.10.6
     - name: Run build
       shell: bash
       env:
