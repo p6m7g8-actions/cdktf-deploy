@@ -32,7 +32,7 @@ runs:
         which cdktf
         cdktf --version
     - name: Assume role using OIDC
-      uses: aws-actions/configure-aws-credentials@v5.1.0
+      uses: aws-actions/configure-aws-credentials@v5.1.1
       with:
         aws-region: ${{ inputs.aws_region }}
         role-to-assume: ${{ inputs.aws_role }}
